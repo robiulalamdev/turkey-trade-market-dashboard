@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StoreHeader from "./StoreHeader";
 import StoreTableHeader from "./StoreTableHeader";
 import {
@@ -15,8 +15,13 @@ import StoreViewInfo from "./StoreViewInfo";
 
 const StoreTable = () => {
   const { data, refetch } = useGetStoresQuery();
+  const [stores, setStores] = useState([]);
   const [openRow, setOpenRow] = useState(null);
   //   console.log(data);
+
+  useEffect(() => {
+    setStores(data?.data);
+  }, [data]);
 
   const handleOpenRow = (value) => {
     if (openRow) {
@@ -28,12 +33,12 @@ const StoreTable = () => {
 
   return (
     <div className="w-full px-2">
-      <StoreHeader />
+      <StoreHeader stores={data?.data} setStores={setStores} />
       <div className="min-w-[1225px] overflow-x-auto w-full">
         <StoreTableHeader />
 
         <div className="grid grid-cols-1 gap-[28px] mt-[28px]">
-          {data?.data?.map((store, index) => (
+          {stores?.map((store, index) => (
             <div key={index}>
               <div className="h-[75px] w-full rounded-[10px] grid grid-cols-12 items-center bg-white border border-black">
                 <div

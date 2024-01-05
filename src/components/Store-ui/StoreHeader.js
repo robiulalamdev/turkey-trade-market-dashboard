@@ -2,7 +2,7 @@ import { Button } from "@material-tailwind/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const StoreHeader = () => {
+const StoreHeader = ({ stores, setStores }) => {
   const {
     handleSubmit,
     register,
@@ -11,7 +11,20 @@ const StoreHeader = () => {
   } = useForm();
 
   const handleSearch = (data) => {
-    console.log(data);
+    const searchLowerCase = data?.search?.toLowerCase();
+    if (searchLowerCase) {
+      const remember = stores.filter(
+        (store) =>
+          store?.store_name?.toLowerCase().includes(searchLowerCase) ||
+          store?.user?.name?.toLowerCase().includes(searchLowerCase) ||
+          store?.user?.role?.toLowerCase().includes(searchLowerCase)
+      );
+      if (remember) {
+        setStores(remember);
+      }
+    } else {
+      setStores(stores);
+    }
   };
   return (
     <div className="pt-[38px] mb-[42px]">
@@ -26,6 +39,7 @@ const StoreHeader = () => {
           Search
         </Button>
         <input
+          {...register("search", { required: false })}
           className="px-2 h-full w-full flex-grow outline-none bg-[#F1F1F1] placeholder:text-[15px] rounded-r-[57px] placeholder:text-[#C7C7C7]"
           type="search"
           placeholder="Company name, Account Holder, Role, Status"
