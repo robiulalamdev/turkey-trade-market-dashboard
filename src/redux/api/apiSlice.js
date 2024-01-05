@@ -1,3 +1,4 @@
+import { token_name } from "@/lib/constants";
 import { base_url } from "@/lib/global";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -6,21 +7,13 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: base_url,
     prepareHeaders: (headers) => {
-      const token = `Bearer ${localStorage.getItem("turkey-trade-market")}`;
+      const token = `Bearer ${localStorage.getItem(token_name)}`;
       if (token) {
         headers.set("Authorization", token);
       }
       return headers;
     },
   }),
-  tagTypes: [
-    "category",
-    "products",
-    "store",
-    "users",
-    "chats",
-    "messages",
-    "seen_messages",
-  ],
+  tagTypes: ["stores", "products"],
   endpoints: () => ({}),
 });

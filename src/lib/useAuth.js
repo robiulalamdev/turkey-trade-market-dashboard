@@ -1,7 +1,8 @@
 import { base_url } from "@/lib/global";
 import { useState, useEffect } from "react";
+import { token_name } from "./constants";
 
-const useAuth = ({ redirectTo }) => {
+const useAuth = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -9,17 +10,12 @@ const useAuth = ({ redirectTo }) => {
     try {
       fetch(`${base_url}/users/user-info/me`, {
         headers: {
-          authorization: `Bearer ${localStorage.getItem(
-            "turkey-trade-market"
-          )}`,
+          authorization: `Bearer ${localStorage.getItem(token_name)}`,
         },
       })
         .then((res) => res.json())
         .then((data) => {
           if (data?.message === "Forbidden Access") {
-            if (redirectTo) {
-              window.location.href = redirectTo;
-            }
             setIsLoading(false);
           } else {
             setUser(data);
@@ -27,9 +23,6 @@ const useAuth = ({ redirectTo }) => {
           }
         });
     } catch (error) {
-      if (redirectTo) {
-        window.location.href = redirectTo;
-      }
       setIsLoading(false);
     }
   };

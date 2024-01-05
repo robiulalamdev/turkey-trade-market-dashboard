@@ -198,3 +198,56 @@ export const iSearch = (
     />
   </svg>
 );
+
+export const iArrowDown = (
+  <svg
+    width="18"
+    height="11"
+    viewBox="0 0 18 11"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M16 1.64551L9 8.61968L2 1.64551"
+      stroke="black"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const iArrowUp = (
+  <svg
+    width="18"
+    height="11"
+    viewBox="0 0 18 11"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2 8.62012L9 1.64595L16 8.62012"
+      stroke="black"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const iHr = (
+  <svg
+    width="1119"
+    height="6"
+    viewBox="0 0 1119 6"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2.00098 2L1117 4"
+      stroke="#C7C7C7"
+      stroke-width="3"
+      stroke-linecap="round"
+    />
+  </svg>
+);

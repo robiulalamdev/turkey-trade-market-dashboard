@@ -8,7 +8,7 @@ const storeApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["store"],
+      invalidatesTags: ["stores"],
     }),
     patchStoreInfoById: builder.mutation({
       query: ({ data, id }) => ({
@@ -32,24 +32,30 @@ const storeApi = api.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
-      invalidatesTags: ["store"],
+      invalidatesTags: ["stores"],
     }),
 
     // get product by id
     getStoreInfoBySellerId: builder.query({
       query: (id) => `/stores/user/${id}`,
-      providesTags: ["store"],
+      providesTags: ["stores"],
     }),
     // get product by id
     getStoreInfo: builder.query({
       query: (id) => `/stores/${id}`,
-      providesTags: ["store"],
+      providesTags: ["stores"],
     }),
 
     // get categories by store used
     getStoreCategories: builder.query({
       query: (id) => `/stores/store/${id}/categories`,
       providesTags: ["products"],
+    }),
+
+    // get all stores for admin
+    getStores: builder.query({
+      query: (id) => `/stores`,
+      providesTags: ["stores"],
     }),
   }),
 });
@@ -63,4 +69,7 @@ export const {
   useStoreInfoUpdateMutation,
 
   useGetStoreCategoriesQuery,
+
+  // admin
+  useGetStoresQuery,
 } = storeApi;

@@ -16,13 +16,14 @@ module.exports = withMT({
   theme: {
     extend: {
       colors: {
-        pm: "#037d41",
+        pm: "#037D41",
         pmd: "#03522b",
         label: "#222",
       },
       fontFamily: {
         sans: ["ui-sans-serif", "system-ui"],
         display: ["Poppins"],
+        inter: ["Inter", "sans-serif"],
         body: ["Poppins"],
       },
       maxWidth: {
