@@ -21,9 +21,17 @@ const StoreStatus = ({ store, index, refetch }) => {
 
   const updateStatus = async (status) => {
     setOpenPopover("");
+    const status_info = [
+      ...(store?.status_info || []),
+      {
+        old_status: store?.status,
+        status: status,
+        date: new Date().toISOString(),
+      },
+    ];
     const options = {
       id: store?._id,
-      data: { status: status },
+      data: { status: status, status_info },
     };
     const result = await statusUpdate(options);
     if (result?.data?.status === true) {
@@ -35,7 +43,6 @@ const StoreStatus = ({ store, index, refetch }) => {
     setOpenPopover("");
   };
 
-  console.log(openPopover);
   return (
     <Popover
       open={openPopover === index ? true : false}

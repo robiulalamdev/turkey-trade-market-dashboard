@@ -33,8 +33,9 @@ const useAuth = () => {
 
   const logout = () => {
     setIsLoading(true);
-    localStorage.removeItem("turkey-trade-market");
+    localStorage.removeItem(token_name);
     setUser(null);
+    setIsLoading(false);
   };
 
   const refetch = async () => {

@@ -2,7 +2,7 @@ import { Button } from "@material-tailwind/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const StoreHeader = ({ stores, setStores }) => {
+const StoreHeader = ({ stores, setStores, logout }) => {
   const {
     handleSubmit,
     register,
@@ -17,6 +17,7 @@ const StoreHeader = ({ stores, setStores }) => {
         (store) =>
           store?.store_name?.toLowerCase().includes(searchLowerCase) ||
           store?.user?.name?.toLowerCase().includes(searchLowerCase) ||
+          store?.status?.toLowerCase().includes(searchLowerCase) ||
           store?.user?.role?.toLowerCase().includes(searchLowerCase)
       );
       if (remember) {
@@ -27,10 +28,10 @@ const StoreHeader = ({ stores, setStores }) => {
     }
   };
   return (
-    <div className="pt-[38px] mb-[42px]">
+    <div className="pt-[38px] mb-[42px] flex justify-between items-center flex-wrap-reverse w-full gap-4">
       <form
         onSubmit={handleSubmit(handleSearch)}
-        className="h-[60px] max-w-[700px] flex justify-between items-center border rounded-[57px] bg-[#F1F1F1]"
+        className="h-[60px] max-w-[700px] flex justify-between items-center border rounded-[57px] bg-[#F1F1F1] flex-grow"
       >
         <Button
           type="submit"
@@ -45,6 +46,9 @@ const StoreHeader = ({ stores, setStores }) => {
           placeholder="Company name, Account Holder, Role, Status"
         />
       </form>
+      <Button onClick={() => logout()} size="sm" className="bg-red-600 rounded">
+        Log out
+      </Button>
     </div>
   );
 };

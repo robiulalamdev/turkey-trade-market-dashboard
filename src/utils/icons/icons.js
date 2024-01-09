@@ -205,11 +205,12 @@ export const iArrowDown = (
     height="11"
     viewBox="0 0 18 11"
     fill="none"
+    color="currentColor"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
       d="M16 1.64551L9 8.61968L2 1.64551"
-      stroke="black"
+      stroke="currentColor"
       stroke-width="3"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -223,11 +224,12 @@ export const iArrowUp = (
     height="11"
     viewBox="0 0 18 11"
     fill="none"
+    color="currentColor"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
       d="M2 8.62012L9 1.64595L16 8.62012"
-      stroke="black"
+      stroke="currentColor"
       stroke-width="3"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -248,6 +250,40 @@ export const iHr = (
       stroke="#C7C7C7"
       stroke-width="3"
       stroke-linecap="round"
+    />
+  </svg>
+);
+
+export const iView = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="w-6 h-6"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M7.5 3.75H6A2.25 2.25 0 0 0 3.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0 1 20.25 6v1.5m0 9V18A2.25 2.25 0 0 1 18 20.25h-1.5m-9 0H6A2.25 2.25 0 0 1 3.75 18v-1.5M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+    />
+  </svg>
+);
+
+export const iArrowRight = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="3"
+    stroke="currentColor"
+    class="w-6 h-6 text-pm"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
     />
   </svg>
 );

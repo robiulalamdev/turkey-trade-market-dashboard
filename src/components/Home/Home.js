@@ -18,8 +18,8 @@ const HomePage = () => {
     <>
       {!isLoading && user?._id ? (
         <div className="scrollbar overflow-y-auto">
-          <div className="flex flex-col h-full w-full flex-grow px-4 max-h-screen min-h-screen  max-w-[1235px] mx-auto">
-            <StoreTable />
+          <div className="flex flex-col h-full w-full flex-grow max-h-screen min-h-screen max-w-[1235px] mx-auto">
+            <StoreTable logout={logout} />
           </div>
         </div>
       ) : (

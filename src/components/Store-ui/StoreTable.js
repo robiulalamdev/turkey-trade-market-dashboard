@@ -6,14 +6,14 @@ import {
   useStatusUpdateMutation,
 } from "@/redux/features/stores/storeApi";
 import { base_url } from "@/lib/global";
-import { toast } from "react-toastify";
 
 import StoreStatus from "./StoreStatus";
 import moment from "moment";
 import { iArrowDown, iArrowUp } from "@/utils/icons/icons";
 import StoreViewInfo from "./StoreViewInfo";
+import storeLogo from "../../../public/assets/store.png";
 
-const StoreTable = () => {
+const StoreTable = ({ logout }) => {
   const { data, refetch } = useGetStoresQuery();
   const [stores, setStores] = useState([]);
   const [openRow, setOpenRow] = useState(null);
@@ -24,16 +24,19 @@ const StoreTable = () => {
   }, [data]);
 
   const handleOpenRow = (value) => {
-    if (openRow) {
-      setOpenRow("");
+    if (openRow && openRow?._id === value?._id) {
+      setOpenRow(null);
     } else {
       setOpenRow(value);
     }
   };
 
+  // console.log(openRow);
+  // console.log(data?.data);
+
   return (
     <div className="w-full px-2">
-      <StoreHeader stores={data?.data} setStores={setStores} />
+      <StoreHeader stores={data?.data} setStores={setStores} logout={logout} />
       <div className="min-w-[1225px] overflow-x-auto w-full">
         <StoreTableHeader />
 
@@ -47,8 +50,9 @@ const StoreTable = () => {
                   {store?.logo ? (
                     <img
                       className="h-full w-full object-contain rounded-lg object-center"
-                      src={`${base_url}/uploads/${data?.logo}`}
+                      src={`${base_url}/uploads/${store?.logo}`}
                       alt="nature image"
+                      onError={(e) => (e.target.src = storeLogo.src)}
                     />
                   ) : (
                     <div className="border border-blue-gray-50 bg-blue-gray-50/50 object-contain w-12 h-12 rounded-full flex justify-center items-center text-xl font-bold p-1">
@@ -57,16 +61,16 @@ const StoreTable = () => {
                   )}
                 </div>
                 <div
-                  className={`flex justify-center items-center h-[30px] col-span-2 w-full border-r-2 border-[#D9D9D9]`}
+                  className={`flex justify-center items-center h-[30px] col-span-2 w-full border-r-2 border-[#D9D9D9] px-2`}
                 >
-                  <h1 className="text-black font-inter text-[15px] font-medium tracking-[0.2px] text-break">
+                  <h1 className="text-black font-inter text-[15px] font-medium tracking-[0.2px] text-break text-center">
                     {store?.store_name}
                   </h1>
                 </div>
                 <div
-                  className={`flex justify-center items-center h-[30px] col-span-2 w-full border-r-2 border-[#D9D9D9]`}
+                  className={`flex justify-center items-center h-[30px] col-span-2 w-full border-r-2 border-[#D9D9D9] px-2`}
                 >
-                  <h1 className="text-black font-inter text-[15px] font-medium tracking-[0.2px] text-break">
+                  <h1 className="text-black font-inter text-[15px] font-medium tracking-[0.2px] text-break text-center">
                     {store?.user?.name}
                   </h1>
                 </div>
@@ -101,16 +105,16 @@ const StoreTable = () => {
                   className={`flex justify-center items-center h-[30px] col-span-1 w-full`}
                 >
                   <div
-                    onClick={() => handleOpenRow(index)}
+                    onClick={() => handleOpenRow(store)}
                     className="cursor-pointer"
                   >
-                    <h1 className="text-black font-inter text-[15px] font-medium tracking-[0.2px] text-break">
-                      {openRow === index ? iArrowUp : iArrowDown}
+                    <h1 className="text-black font-inter text-[15px] font-medium tracking-[0.2px] text-break hover:text-pm">
+                      {openRow?._id === store?._id ? iArrowUp : iArrowDown}
                     </h1>
                   </div>
                 </div>
               </div>
-              {openRow === index && <StoreViewInfo store={store} />}
+              {openRow?._id === store?._id && <StoreViewInfo store={store} />}
             </div>
           ))}
         </div>
