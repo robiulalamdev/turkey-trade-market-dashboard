@@ -22,7 +22,7 @@ const StoreStatus = ({ store, index, refetch }) => {
   const updateStatus = async (status) => {
     setOpenPopover("");
     const status_info = [
-      ...(store?.status_info || []),
+      ...store?.status_info,
       {
         old_status: store?.status,
         status: status,
