@@ -4,7 +4,6 @@ import { Button, Spinner } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import StoreCertificates from "./StoreCertificates";
 import StatusInfo from "./StatusInfo";
 
 const StoreViewInfo = ({ store }) => {
@@ -114,17 +113,6 @@ const StoreViewInfo = ({ store }) => {
                 store?.status_info ? [...store.status_info].reverse() : []
               }
             />
-          </div>
-        )}
-
-        {store?.certificates?.length > 0 && (
-          <div className="mt-[16px]">
-            <h1 className="text-black text-xl font-inter font-semibold tracking-[0.2px]">
-              Certificates
-            </h1>
-            <div className="h-fit md:h-[320px]">
-              <StoreCertificates saveCertificates={store?.certificates} />
-            </div>
           </div>
         )}
 
