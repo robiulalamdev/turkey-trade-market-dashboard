@@ -62,7 +62,6 @@ const StoreViewInfo = ({ store }) => {
   const crtImg =
     store?.business_information?.business_registration_certificate?.split("/");
 
-  console.log(crtImg);
   return (
     <>
       <div className="border border-black rounded-[10px] p-5 mt-[28px]">
@@ -145,19 +144,6 @@ const StoreViewInfo = ({ store }) => {
             </div>
           )}
 
-          {store?.status_info?.length > 0 && (
-            <div className="mt-[16px]">
-              <h1 className="text-black text-xl font-inter font-semibold tracking-[0.2px]">
-                Status Information
-              </h1>
-              <StatusInfo
-                status_info={
-                  store?.status_info ? [...store.status_info].reverse() : []
-                }
-              />
-            </div>
-          )}
-
           {store?.business_information?.business_certificate_number && (
             <div className="mt-[16px] flex gap-2 items-center flex-wrap">
               <h1 className="text-black text-xl font-inter font-semibold tracking-[0.2px]">
@@ -189,7 +175,24 @@ const StoreViewInfo = ({ store }) => {
           )}
         </div>
 
-        <form onSubmit={handleSubmit(handleAdd)} className="mt-[80px]">
+        <div className="mt-[35px]">{iHr}</div>
+
+        {store?.status_info?.length > 0 && (
+          <div className="mt-[16px]">
+            <h1 className="text-black text-[25px] font-inter font-semibold tracking-[0.2px] mb-3">
+              Status Information
+            </h1>
+            <StatusInfo
+              status_info={
+                store?.status_info ? [...store.status_info].reverse() : []
+              }
+            />
+          </div>
+        )}
+
+        <div className="mt-[35px]">{iHr}</div>
+
+        <form onSubmit={handleSubmit(handleAdd)} className="mt-[50px]">
           <h1 className="text-black text-[25px] font-inter font-semibold tracking-[0.2px]">
             Admin Comment
           </h1>
@@ -251,17 +254,15 @@ const StoreViewInfo = ({ store }) => {
       <Dialog
         open={openImage ? true : false}
         handler={() => setOpenImage("")}
-        size="xs"
+        size="lg"
         className="max-h-fit flex justify-center items-center w-full py-5 px-2 shadow shadow-pm outline-none border border-pm rounded-sm"
       >
-        <div className="max-w-[300px] max-h-[300px]">
-          <img
-            className="w-full h-full object-contain"
-            src={openImage}
-            alt="certificate"
-            onError={(e) => (e.target.src = notfound.src)}
-          />
-        </div>
+        <img
+          className="w-full h-full object-contain"
+          src={openImage}
+          alt="certificate"
+          onError={(e) => (e.target.src = notfound.src)}
+        />
       </Dialog>
     </>
   );
