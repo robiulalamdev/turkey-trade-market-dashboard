@@ -32,7 +32,7 @@ const StoreTable = ({ logout }) => {
   };
 
   // console.log(openRow);
-  console.log(data?.data);
+  // console.log(data?.data);
 
   return (
     <div className="w-full px-2">
