@@ -32,7 +32,7 @@ const StoreTable = ({ logout }) => {
   };
 
   // console.log(openRow);
-  // console.log(data?.data);
+  console.log(data?.data);
 
   return (
     <div className="w-full px-2">
@@ -90,7 +90,7 @@ const StoreTable = ({ logout }) => {
                   className={`flex justify-center items-center h-[30px] col-span-2 w-full border-r-2 border-[#D9D9D9]`}
                 >
                   <h1 className="text-black font-inter text-[15px] font-medium tracking-[0.2px] text-break">
-                    {moment(store?.joined_date).format("DD/MMM/YYYY")}
+                    {moment(store?.joined_date).format("MMM DD YYYY")}
                   </h1>
                 </div>
 
@@ -98,7 +98,12 @@ const StoreTable = ({ logout }) => {
                   className={`flex justify-center items-center h-[30px] col-span-2 w-full border-r-2 border-[#D9D9D9]`}
                 >
                   <h1 className="text-black font-inter text-[15px] font-medium tracking-[0.2px] text-break">
-                    {moment(store?.createAt).format("DD/MMM/YYYY")}
+                    {store?.status_info?.length > 0
+                      ? moment(
+                          store?.status_info[store?.status_info?.length - 1]
+                            ?.date
+                        ).format("MMM DD YYYY")
+                      : moment(store?.joined_date).format("MMM DD YYYY")}
                   </h1>
                 </div>
                 <div
